@@ -31,7 +31,7 @@ print(maxRev(L))
 print("Total Visits: ", count)
 print("Calls: ", call)
 
-
+print("memo" , mm)
 # # Bonus code
 # import sys
 # import time

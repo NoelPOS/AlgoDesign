@@ -1,4 +1,5 @@
 import sys
+
 sys.setrecursionlimit(10000)
 
 N, M = map(int, input().split())
@@ -7,6 +8,8 @@ v = list(map(int, input().split()))
 
 x = [0] * N
 
+# Create a memoization table
+memo = {}
 
 def comb(i):
     if i == N:
@@ -19,13 +22,12 @@ def comb(i):
             return -1
         else:
             return sv
-
     else:
         x[i] = 0
         a = comb(i+1)
         x[i] = 1
         b = comb(i+1)
         return max(a, b)
-
-
 print(comb(0))
+
+
