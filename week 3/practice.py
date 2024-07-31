@@ -36,27 +36,27 @@
  
 # print(maxRev(len(prices)))
 
-coins  = list(map(int, input().split()))
-change = int(input())
+# coins  = list(map(int, input().split()))
+# change = int(input())
 
-memo = {}
+# memo = {}
 
-def minCoin(change):
-  if change in memo:
-    return memo[change]
-  if change == 0:
-    return 0
-  if change < 0:
-    return float('inf')
-  else:
-    mincoin = float('inf')
-    for c in coins:
-        temp = minCoin(change - c) + 1
-        mincoin = min(mincoin, temp)
-    memo[change] = mincoin
-    return mincoin
+# def minCoin(change):
+#   if change in memo:
+#     return memo[change]
+#   if change == 0:
+#     return 0
+#   if change < 0:
+#     return float('inf')
+#   else:
+#     mincoin = float('inf')
+#     for c in coins:
+#         temp = minCoin(change - c) + 1
+#         mincoin = min(mincoin, temp)
+#     memo[change] = mincoin
+#     return mincoin
   
-print(minCoin(change))
+# print(minCoin(change))
 
 
 # prices = list(map(int, input().split()))
@@ -80,6 +80,29 @@ print(minCoin(change))
 #     return max_rev
   
 # print(maxRev(len(prices)))
+import sys
+sys.setrecursionlimit(100000)
+
+prices = list(map(int, input().split()))
+n = len(prices)
+
+def maxRev(n):
+  if n == 0:
+    return 0
+  else:
+    max_rev = float('-inf')
+    for i in range(1, n):
+      if i <= n and prices[i - 1] != -1:
+        remain = n - i
+        max_rev = max(max_rev, prices[i - 1] + maxRev(remain))
+        
+    return max_rev
+
+print(maxRev(n))
+
+
+
+
 
  
 

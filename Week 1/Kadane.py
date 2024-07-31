@@ -1,16 +1,10 @@
-input_list = list(map(int, input().split()))
+N = list(map(int, input().split()))
 
 maximum = 0
-temp = 0
+curr = 0
 
-
-for i in range( len(input_list) ):
- temp = max(temp + input_list[i], 0)
- print("input", input_list[i])
- if temp > maximum: 
-  maximum = temp
+for i in range(len(N)):
+ curr = max(curr + N[i], 0)
+ maximum = max(maximum, curr)
  
-
-
-
 print("Maximum: ", maximum)

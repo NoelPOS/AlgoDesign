@@ -9,10 +9,8 @@ mm = [None] * (V + 1)
 
 def mincoin(v):
     global call, mm, c
-
     if mm[v] == None:
         call[v] += 1
-
         if v == 0:
             mm[v] = 0
         else:
@@ -26,5 +24,5 @@ def mincoin(v):
 
 
 print(mincoin(V))
-# print(call)
-# print(mm)
+print(call)
+print(mm)

@@ -1,24 +1,23 @@
-def minCost(k, prices, memo):
-    if k == 0:
-        return 0
-    if k in memo:
-        return memo[k]
-
-    min_cost = float('inf')
-    for i in range(1, k + 1):
-        if prices[i - 1] != -1:
-            cost = minCost( k - i, prices, memo)
-            if cost != float('inf'):
-                min_cost = min(min_cost, cost + prices[i - 1])
-    memo[k] = min_cost
-    return min_cost
+def minPrice(l, p, memo):
+    if memo[l] != None:
+        return memo[l]
+    if l == 0:
+        memo[l] = 0
+        return memo[l]
+    else:
+        mx = float('inf')
+        for i in range(1, l + 1):
+            if i <= l and p[i - 1] != -1:
+                mx = min(mx, p[i - 1] + minPrice(l - i, p, memo))  
+        memo[l] = mx
+        return memo[l] 
 
 tests = int(input())
 results = []
 for i in range(tests):
  n, k = list(map(int, input().split()))
  prices = list(map(int, input().split()))
- results.append(minCost( k, prices, {}))
+ results.append(minPrice( k, prices, [None] * (k + 1)))
     
 for i in results:
     if i == float('inf'):

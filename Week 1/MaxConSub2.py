@@ -8,26 +8,15 @@ def Sum(x, i , j):
 
 start = time.process_time()
 
-input_list = list(map(int, input().split()))
-# i = 0
-# j = 1
-# while i < len(input_list) - 1  and j < len(input_list)  :
-#  temp = input_list[i] + input_list[j]
-#  input_list[j] = temp
-#  i += 1
-#  j += 1
+N = list(map(int, input().split()))
 
-for i in range(len(input_list) - 1):
- input_list[i + 1] = input_list[i] + input_list[i + 1]
-
-print(input_list)
-
- 
+for i in range(len(N) - 1):
+ N[i + 1] = N[i] + N[i + 1]
 
 maximum = 0
-for i in range(len(input_list)):
- for j in range(i, len(input_list)):
-  result = Sum(input_list, i, j)
+for i in range(len(N)):
+ for j in range(i, len(N)):
+  result = Sum(N, i, j)
   maximum = max(maximum, result)
 
 end = time.process_time()

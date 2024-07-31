@@ -42,9 +42,10 @@ def maxRev(l):
         memo[l] = 0
         return memo[l]
     else:
-        mx = 0
+        mx = float('inf')
         for i in range(1, l + 1):
-            mx = max(mx, p[i] + maxRev(l - i))  
+            if i <= L and p[i] != -1:
+                mx = min(mx, p[i] + maxRev(l - i))  
         memo[l] = mx
         return memo[l]    
 print(maxRev(L))

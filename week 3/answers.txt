@@ -2,3 +2,41 @@
 2.in (L = 20) : 52
 3.in (L = 40) : 160
 4.in (L = 100): 366
+
+
+given 
+coins = [1,2,3,4]
+change = 5
+
+
+possible options 
+- all options from coins if each option is less than x. 
+In this case, 1, 2, 3, 4 since they are less than 5. 
+
+remaining value after picking each option 
+- change - coin for coin in coins
+In this case, 
+5 - 1
+5 - 2
+5 - 3 
+5 - 4
+
+
+minCoins for each remaining value of change 
+- mincoin(change - coin) for coin in coins
+In this case, 
+mincoin(5 - 1)
+mincoin(5 - 2)
+mincoin(5 - 3)
+mincoin(5 - 4)
+
+value of mincoin(v)
+- 1 + max(mincoin(v - coin) for coin in coins)
+
+obvious ans
+if v = 0, then return 0
+
+128 64 32 16 8 4 2 1
+7    6  5  4 3 2 1 0
+
+1   1   0  0  1 0 0 0 
