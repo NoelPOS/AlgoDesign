@@ -1,3 +1,6 @@
+import copy 
+
+
 x = input().split()
 M = int(x[0])    # number of rows
 N = int(x[1])    # number of columns
@@ -13,11 +16,7 @@ for i in range(M):
     for j in range(N):
         maze[i][j] = -int(x[j])  # set wall to -1 (so it won't mix with BFS
 
-def valid(r,c):
-    if r >= 0 and r < M and c >= 0 and c < N:
-        if maze[r][c] == 0:
-            return True
-    return False
+Adj = [(-1,0),(0,1),(1,0),(0,-1)] 
 
 class state:
     def __init__(self, row, column, step):
@@ -25,14 +24,12 @@ class state:
         self.c = column
         self.step = step
 
-Adj = [(-1,0),(0,1),(1,0),(0,-1)] 
 
-def goal(s):
-    if s.r == dr and s.c == dc:
-        return True
+def valid(r,c):
+    if r >= 0 and r < M and c >= 0 and c < N:
+        if maze[r][c] == 0:
+            return True
     return False
-
-import copy 
 
 def successor(s):
     succ = []
@@ -46,6 +43,11 @@ def successor(s):
         succ.append(u)
     return succ
 
+def goal(s):
+    if s.r == dr and s.c == dc:
+        return True
+    return False
+
 s = state(sr,sc,0)
 Q = []
 
@@ -56,3 +58,5 @@ while not goal(s):
     del Q[0]
 
 print(s.step)
+
+
