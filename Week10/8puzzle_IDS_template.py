@@ -32,7 +32,6 @@ def goal(s):
 
 def successor(s):
     global d
-
     succ = []
     for i in range(len(s.p)):
             if s.p[i] == 0:
@@ -66,14 +65,18 @@ def DFS(s, maxDepth):
                 return minstep
         return -1
         
-
-def IDS(s):  # Iterative Deepening Search
-    # Complete this function (which utilizes DFS)
-
-
+def IDS(s):
+    maxDepth = 0
+    x = DFS(s,maxDepth)
+    while x == -1:
+        maxDepth+=1
+        x = DFS(s,maxDepth)
+    return x
     
-          
 count = 0
 s = state(p)
 print(IDS(s))
 print("state count = ", count)
+
+
+

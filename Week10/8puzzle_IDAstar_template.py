@@ -82,10 +82,10 @@ def DFS(s, atMost):
 
 def IDAstar(s):
     global found
-
-    # Complete this function
-    
-
+    atMost = DFS(s,s.h)
+    while not found:
+        atMost = DFS(s,atMost)
+    return atMost
           
 count = 0
 s = state(p)
