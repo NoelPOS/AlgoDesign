@@ -21,7 +21,7 @@ class DisjointSets:
             if self.rank[a] == self.rank[b]:
                 self.rank[a] += 1
 
-'''
+
 # example
 
 djs = DisjointSets(5)
@@ -34,4 +34,4 @@ print(djs.findset(3), djs.findset(4))
 djs.union(4,1)
 print(djs.findset(4), djs.findset(1))
 
-'''
+print(djs.rank)
