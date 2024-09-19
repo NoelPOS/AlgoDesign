@@ -27,5 +27,5 @@ def maxVal(i, C):
     return memo[i][C] 
  
 print("Result", maxVal(0, M))
-print("Count", count)
-print("Calls", call)
+# print("Count", count)
+# print("Calls", call)
