@@ -79,7 +79,6 @@ def DFS(s, atMost):
                 break
         return atLeast
         
-
 def IDAstar(s):
     global found
     atMost = DFS(s,s.h)

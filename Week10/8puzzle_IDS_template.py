@@ -43,7 +43,7 @@ def successor(s):
         i = r + a[0]
         j = c + a[1]
         if valid(i,j):
-            target = i*d + j
+            target = i*d + j 
             m = s.p[:]
             m[target],m[hole] = m[hole],m[target]
             u = state(m)

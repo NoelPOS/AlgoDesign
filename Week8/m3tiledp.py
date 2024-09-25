@@ -6,26 +6,35 @@ UPPER2 = 1
 LOWER2 = 2
 
 L = int(input())
+memo = [[None] * 3 for i in range(L + 1)]
 
-mm = [[-1] * 3 for _ in range(L + 1)]
+def nWays(d, s):
+    if memo[d][s] != None:
+        return memo[d][s]
 
-mm[L][FLAT] = 1
-
-for d in range(L-1, -1, -1):
-    for s in [FLAT, UPPER2, LOWER2]:
+    if d == L:
+        if s == FLAT:
+            return 1
+        else:
+            return 0
+    else:
         counter = 0
         if s == FLAT:
-            counter += mm[d+1][UPPER2]
+            counter += nWays(d+1, UPPER2)
             # Actually, this is symmetric to UPPER2
-            counter += mm[d+1][LOWER2]
+            counter += nWays(d+1, LOWER2)
             if d < L-1:
-                counter += mm[d+2][FLAT]
+                counter += nWays(d+2, FLAT)
         else:  # s is either UPPER2 or LOWER2
-            counter += mm[d+1][FLAT]
+            counter += nWays(d+1, FLAT)
             if d < L-1:
-                counter += mm[d+2][s]
+                counter += nWays(d+2, s)
 
-        mm[d][s] = counter
+        memo[d][s] = counter
+        return counter
 
-result = mm[0][FLAT]
-print(result)
+
+for i in range(L, -1, -1):
+    nWays(i, FLAT)
+
+print(memo[0][FLAT])

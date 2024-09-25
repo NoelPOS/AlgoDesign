@@ -6,7 +6,6 @@ FLAT = 0
 UPPER2 = 1
 LOWER2 = 2
 
-
 def read_lengths():
     lengths = []
     while True:

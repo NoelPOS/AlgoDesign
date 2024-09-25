@@ -9,7 +9,6 @@ Choice = [None for _ in range(2*N-1)]
 def valid(i, j, depth):
     return i >= 0 and i < N and j >= 0 and j < N and i+j > depth
 
-
 class state:
     def __init__(self, i, j, g):
         self.i = i

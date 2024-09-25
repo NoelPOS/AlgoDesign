@@ -6,14 +6,11 @@ for i in range(a):
 
 acts.sort(key=lambda x : x[1])
 
-# for a in acts:
-#  print(a)
-
-lf = 0
+lf = -1
 c = 0
 
 for s, f in acts:
- if s >= lf:
+ if s > lf:
   c += 1
   lf = f
 
