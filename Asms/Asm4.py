@@ -1,56 +1,55 @@
-puzzle = []
+# Inversion Count
 
-for i in range(3):
-    row = list(map(int, input().split()))
-    puzzle.append(row)
-adj = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+# arr = list(map(int, input().split()))
 
-import copy
+# count = 0
+# for i in range(len(arr)):
+#     for j in range(i+1, len(arr)):
+#         if arr[i] > arr[j] and i < j:
+#             count += 1
 
-
-class state():
-    def __init__(self, puzzle, steps):
-        self.puzzle = puzzle
-        self.steps = steps
+# print(count)
 
 
-def goal(s):
-    if s.puzzle == [[1, 2, 3], [4, 5, 6], [7, 8, 0]]:
-        return True
-    return False
+# Improved Inversion Count 
 
-def getempty(s):
-    for i in range(3):
-        for j in range(3):
-            if s.puzzle[i][j] == 0:
-                return i, j
-            
-def valid(r, c):
-    if r >= 0 and r < 3 and c >= 0 and c < 3:
-        return True
-    return False
+def merge(arr, s, m, e):
+    global count
+    i = s
+    j = m + 1
 
-def successor(s):
-    succ = []
-    er, ec = getempty(s)
-    for a in adj:
-        u = copy.deepcopy(s)
-        nr = er + a[0]
-        nc = ec + a[1]
-        if valid(nr, nc):
-            u.puzzle[er][ec], u.puzzle[nr][nc] = u.puzzle[nr][nc], u.puzzle[er][ec]
-            u.steps += 1
-            succ.append(u)
-    return succ
+    B = []
+    while i <= m and j <= e:
+        if arr[i] <= arr[j]:
+            B.append(arr[i])
+            i += 1
+        else:
+            count += m - i + 1
+            B.append(arr[j])
+            j += 1
+    
+    while i <= m:
+        B.append(arr[i])
+        i += 1  
+    while j <= e:
+        B.append(arr[j])
+        j += 1
+    
+    arr[s:e+1] = B
+    
 
+def mergeSort(arr, s, e):
+    if s < e:
+        m = (s + e) // 2
+        mergeSort(arr, s, m)
+        mergeSort(arr, m + 1, e)
+        merge(arr, s, m, e)
 
-s = state(puzzle, 0)
-queue = [s]
-
-while not goal(s):
-    for x in successor(s):
-        queue.append(x)
-    s = queue[0]
-    del queue[0]
-
-print(s.steps)
+N = int(input())  
+for i in range(N):
+    blank = input()  
+    n = int(input())  
+    A = [int(input()) for j in range(n)]
+    count = 0
+    mergeSort(A, 0, len(A) - 1)
+    print(count)

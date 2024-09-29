@@ -75,6 +75,7 @@ def IDS(s):
     
 count = 0
 s = state(p)
+print(s.p)
 print(IDS(s))
 print("state count = ", count)
 
