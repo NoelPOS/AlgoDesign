@@ -24,8 +24,9 @@ for i in range(N):
 u = pq.dequeue()
 p.append(u)
 
+
 result = 0
-for i in range(N):
+for i in range(N + 1):
     result += p[i].g
 
 print(result)
