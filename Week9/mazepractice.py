@@ -19,24 +19,21 @@ for i in range(M):
 Adj = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
 
-
-class state:
-    def __init__(self, row, column, step):
-        self.r = row
-        self.c = column
+class state():
+    def __init__(self, r, c, step):
+        self.r = r
+        self.c = c
         self.step = step
 
-s = state(sr, sc, 0)
-queue = []
 
 def goal(s):
     if s.r == dr and s.c == dc:
         return True
     return False
 
-def valid(r,c):
-    if r >= 0 and r < M and c >= 0 and c < N:
-        if maze[r][c] == 0:
+def valid(s):
+    if 0 <= s.r < M and 0 <= s.c < N:
+        if maze[s.r][s.c] == 0:
             return True
     return False
 
@@ -46,17 +43,23 @@ def successor(s):
         u = copy.deepcopy(s)
         u.r += a[0]
         u.c += a[1]
-        if valid(u.r, u.c):
+        if valid(u):
             u.step += 1
             maze[u.r][u.c] = u.step
             succ.append(u)
+
     return succ
 
+
+s = state(sr, sc, 0)
+Q = []
+
 while not goal(s):
-   for u in successor(s):
-        queue.append(u)
-   s = queue[0]
-   del queue[0]
+    for i in successor(s):
+        Q.append(i)
+
+    s = Q[0]
+    del Q[0]
 
 print(s.step)
 

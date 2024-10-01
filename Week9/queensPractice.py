@@ -1,40 +1,39 @@
-import copy
+import copy 
+
 q = int(input())
 
 class state():
- def __init__(self, n):
-  self.queen = [-1] * n
-  self.col = 0
+    def __init__(self, q):
+        self.queens = [-1] * q
+        self.col = 0
 
 def goal(s):
- if s.col == q:
-  return True
- else:
-  return False
-
-def conflict(queen, i, c):
- if queen[i] == queen[c] or abs(queen[i]-queen[c]) == abs(i-c):
+    if s.col == q:
         return True
- return False
+    return False
 
-def valid(u):
- for i in range(u.col):
-  if conflict(u.queen, i, u.col):
-   return False
- return True
+def conflict(Q, i, j):
+    if Q[i] == Q[j] or abs(Q[i]-Q[j]) == abs(i-j):
+        return True
+    return False
+
+def valid(s):
+    for i in range(s.col):
+        if conflict(s.queens, i, s.col):
+            return False
+    return True
 
 
 def successor(s):
- succ = []
- for i in range(q):
-  u = copy.deepcopy(s)
-  u.queen[u.col] = i
-  if valid(u):
-   u.col += 1
-   succ.append(u)
+    succ = []
+    for i in range(q):
+        u = copy.deepcopy(s)
+        u.queens[u.col] = i
+        if valid(u):
+            u.col += 1
+            succ.append(u)
 
- return succ
-
+    return succ
 
 def printqueens(Q):
     n = len(Q)
@@ -47,12 +46,12 @@ def printqueens(Q):
         print()
 
 s = state(q)
-queue = []
+Q = []
 
 while not goal(s):
-  for x in successor(s):
-    queue.append(x)
-  s = queue[0]
-  del queue[0]
+    for u in successor(s):
+        Q.append(u)
+    s = Q[0]
+    del Q[0]
 
-printqueens(s.queen)
+printqueens(s.queens)

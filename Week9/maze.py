@@ -1,6 +1,5 @@
 import copy 
 
-
 x = input().split()
 M = int(x[0])    # number of rows
 N = int(x[1])    # number of columns

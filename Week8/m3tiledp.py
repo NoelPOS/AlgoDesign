@@ -1,5 +1,5 @@
-import sys
-sys.setrecursionlimit(10001)
+# import sys
+# sys.setrecursionlimit(10001)
 
 FLAT = 0
 UPPER2 = 1
