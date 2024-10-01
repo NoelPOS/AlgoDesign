@@ -8,6 +8,15 @@ def matrix_multiply(A, B):
                 result[i][j] %= 2147483647
     return result
 
+def multiply2D(A,B):
+    m = 2147483647
+    C = [[A[0][0] * B[0][0] % m + A[0][1] * B[1][0] % m, 
+          A[0][0] * B[0][1] % m + A[0][1] * B[1][1] % m],
+         [A[1][0] * B[0][0] % m + A[1][1] * B[1][0] % m,
+          A[1][0] * B[0][1] % m + A[1][1] * B[1][1] % m]]
+    
+    return C
+
 
 def matrix_power(M, n):
     # Compute M^n using matrix exponentiation
