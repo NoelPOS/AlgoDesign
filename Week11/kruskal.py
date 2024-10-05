@@ -1,20 +1,26 @@
-V, E = map(int, input().split())
+v, e = map(int, input().split())
 edges = []
 
-for i in range(E):
+for i in range(e):
     a, b, w = map(int, input().split())
-    edges.append((w, a, b))
+    edges.append((w, a , b))
 
 edges.sort()
 
 from disjointsets3 import DisjointSets
 
-djs = DisjointSets(V)
-mst_weight = 0
+djs = DisjointSets(v)
+mst = 0
+mst_edges = []
+for e in edges:
+    w, u , v = e
+    if djs.findset(u) != djs.findset(v):
+        mst += w
+        mst_edges.append(e)
+        djs.union(u, v)
 
-for w, a, b in edges:
-    if djs.findset(a) != djs.findset(b):
-        djs.union(a,b)
-        mst_weight += w
+print(mst)
+print(mst_edges)
 
-print(mst_weight)
+
+

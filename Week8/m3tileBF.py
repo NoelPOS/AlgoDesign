@@ -6,9 +6,11 @@ UPPER2 = 1
 LOWER2 = 2
 
 L = int(input())
-
+memo = {}
 
 def nWays(d, s):
+    if (d, s) in memo:
+        return memo[(d, s)]
     if d == L:
         if s == FLAT:
             return 1
@@ -26,7 +28,12 @@ def nWays(d, s):
             counter += nWays(d+1, FLAT)
             if d < L-1:
                 counter += nWays(d+2, s)
+        memo[(d, s)] = counter
         return counter
 
+for i in range(L -1, -1, -1):
+    nWays(i, FLAT)
 
-print(nWays(0, FLAT))
+print(memo[(0, FLAT)])
+
+# print(nWays(0, FLAT))

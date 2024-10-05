@@ -24,14 +24,14 @@ class DisjointSets:
 
 # example
 
-djs = DisjointSets(5)
-for i in range(5):
-    print(djs.findset(i))
+# djs = DisjointSets(5)
+# for i in range(5):
+#     print(djs.findset(i))
 
-djs.union(3,4)
-print(djs.findset(3), djs.findset(4))
+# djs.union(3,4)
+# print(djs.findset(3), djs.findset(4))
 
-djs.union(4,1)
-print(djs.findset(4), djs.findset(1))
+# djs.union(4,1)
+# print(djs.findset(4), djs.findset(1))
 
-print(djs.rank)
+# print(djs.rank)
